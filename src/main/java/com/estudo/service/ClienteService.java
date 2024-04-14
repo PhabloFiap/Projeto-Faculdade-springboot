@@ -21,6 +21,12 @@ public class ClienteService {
 
     }
 
+    public List<Cliente> createClientes(Cliente clientes) {
+        clienteRepository.save(clientes);
+        return listClientes();
+
+    }
+
     public List<Cliente> listClientes() {
         Sort sort = Sort.by(Sort.Direction.DESC, "nome");
         return clienteRepository.findAll(sort);
