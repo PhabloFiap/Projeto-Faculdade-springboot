@@ -8,62 +8,47 @@ public class Emprestimo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idEmp;
 
-    @Column (name = "nome", nullable = false)
-    private String nome;
-    @Column (name = "idade", nullable = false)
-    private int idade;
+    @Column (name = "valor", nullable = false)
+    private int valor;
+    @Column (name = "status")
+    private String status;
 
-    @Column (name = "renda", nullable = false)
-    private double rendaMensal;
-
-    @Column(name = "score", nullable = false)
-    private int scoreCredito;
-
+    @ManyToOne()
+    //@JoinColumn(name = "id")
+    private Cliente cliente;
 
 
     public Emprestimo() {
     }
 
-    public Long getId() {
-        return id;
+    public int getValor() {
+        return valor;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 
-    public String getNome() {
-        return nome;
+    public String getStatus() {
+        return status;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public int getIdade() {
-        return idade;
-    }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public double getRendaMensal() {
-        return rendaMensal;
-    }
-
-    public void setRendaMensal(double rendaMensal) {
-        this.rendaMensal = rendaMensal;
-    }
-
-    public int getScoreCredito() {
-        return scoreCredito;
-    }
-
-    public void setScoreCredito(int scoreCredito) {
-        this.scoreCredito = scoreCredito;
-    }
+//    public boolean calcularStatus(){
+//        if (cliente.getRendaMensal()<3000 && cliente.getIdade()<21 && cliente.getScoreCredito()<500 ){
+//
+//            return true;
+//
+//
+//        }
+//        return false;
+//
+//    }
 
 }

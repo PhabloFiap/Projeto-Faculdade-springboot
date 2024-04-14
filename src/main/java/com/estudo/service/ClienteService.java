@@ -21,10 +21,19 @@ public class ClienteService {
 
     }
 
+    public List<Cliente> createClientes(Cliente clientes) {
+        clienteRepository.save(clientes);
+        return listClientes();
+
+    }
+
     public List<Cliente> listClientes() {
         Sort sort = Sort.by(Sort.Direction.DESC, "nome");
         return clienteRepository.findAll(sort);
 
+    }
+    public Cliente findbyCliente(Long id) {
+        return clienteRepository.findById(id).get();
     }
 
     public List<Cliente> deleteCliente(Long id) {

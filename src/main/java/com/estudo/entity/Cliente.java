@@ -1,6 +1,12 @@
 package com.estudo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_CLIENTE")
@@ -10,18 +16,34 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column (name = "nome", nullable = false)
+    @NotBlank
     private String nome;
     @Column (name = "idade", nullable = false)
+    @Positive
     private int idade;
 
+    @PositiveOrZero
     @Column (name = "renda", nullable = false)
     private double rendaMensal;
 
+    @PositiveOrZero
     @Column(name = "score", nullable = false)
     private int scoreCredito;
 
+    //@OneToMany(mappedBy = "emporestimo", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@JoinColumn(name = "id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id")
+    private List<Emprestimo> emprestimo = new ArrayList<>();
 
+    public Cliente(String nome, int idade, double rendaMensal, int scoreCredito) {
+        this.nome = nome;
+        this.idade = idade;
+        this.rendaMensal = rendaMensal;
+        this.scoreCredito = scoreCredito;
+    }
 
     public Cliente() {
     }
