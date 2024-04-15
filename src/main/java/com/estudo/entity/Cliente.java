@@ -1,6 +1,9 @@
 package com.estudo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +16,19 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column (name = "nome", nullable = false)
+    @NotBlank
     private String nome;
     @Column (name = "idade", nullable = false)
+    @Positive
     private int idade;
 
+    @PositiveOrZero
     @Column (name = "renda", nullable = false)
     private double rendaMensal;
 
+    @PositiveOrZero
     @Column(name = "score", nullable = false)
     private int scoreCredito;
 
