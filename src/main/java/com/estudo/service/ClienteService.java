@@ -41,6 +41,8 @@ public class ClienteService {
     public List<Cliente> updateCliente(Cliente cliente) {
         clienteRepository.save(cliente);
         return listClientes();
+
+
     }
 
 }
