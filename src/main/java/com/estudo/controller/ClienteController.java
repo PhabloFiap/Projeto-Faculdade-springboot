@@ -2,6 +2,7 @@ package com.estudo.controller;
 
 import com.estudo.entity.Cliente;
 import com.estudo.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,13 @@ public class ClienteController {
     }
 
     @PostMapping
-    List<Cliente> createCliente(@RequestBody Cliente cliente){
+    List<Cliente> createCliente(@RequestBody @Valid Cliente cliente){
         return clienteService.createCliente(cliente);
+    }
+
+    @PutMapping
+    List<Cliente> updateCliente(@RequestBody @Valid Cliente cliente) {
+        return clienteService.updateCliente(cliente);
     }
 
     @GetMapping
@@ -28,6 +34,10 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     List<Cliente> deleteCliente(@PathVariable Long id){
         return clienteService.deleteCliente(id);
+    }
+    @GetMapping("/{id}")
+    Cliente findbyCliente(@PathVariable Long id){
+        return clienteService.findbyCliente(id);
     }
 
 

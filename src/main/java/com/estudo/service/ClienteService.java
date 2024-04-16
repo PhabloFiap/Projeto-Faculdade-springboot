@@ -32,6 +32,9 @@ public class ClienteService {
         return clienteRepository.findAll(sort);
 
     }
+    public Cliente findbyCliente(Long id) {
+        return clienteRepository.findById(id).get();
+    }
 
     public List<Cliente> deleteCliente(Long id) {
         clienteRepository.deleteById(id);
